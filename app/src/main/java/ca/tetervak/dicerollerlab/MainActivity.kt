@@ -2,10 +2,10 @@ package ca.tetervak.dicerollerlab
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ca.tetervak.dicerollerlab.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * This activity allows the user to roll a dice and view the result
@@ -54,8 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayToastMessage(message: String) {
-        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast.show()
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun updateDiceImage(diceRoll: Int) {
