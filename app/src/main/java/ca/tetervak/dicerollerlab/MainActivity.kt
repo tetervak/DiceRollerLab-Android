@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         const val TAG = "MainActivity"
     }
 
-
     private lateinit var binding: ActivityMainBinding
 
     private val mainViewModel: MainViewModel by viewModels()
@@ -27,15 +26,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rollButton.setOnClickListener { onDiceRoll() }
+        binding.rollButton.setOnClickListener { mainViewModel.roll() }
+
+        mainViewModel.rollResult.observe(this) { result ->
+            updateOutputs(result)
+        }
     }
 
     /**
-     * Roll the dice and update the screen with the result.
+     * Update the screen showing the result.
      */
-    private fun onDiceRoll() {
+    private fun updateOutputs(rollResult: Int) {
         displayToastMessage()
-        val rollResult = getRollResult()
         Log.d(TAG, "onDiceRoll: rollResult = $rollResult")
         updateTextOutput(rollResult)
         updateDiceImage(rollResult)
@@ -45,18 +47,13 @@ class MainActivity : AppCompatActivity() {
         binding.resultTextView.text = rollResult.toString()
     }
 
-    private fun getRollResult(): Int {
-        val dice = Dice(6)
-        return dice.roll()
-    }
-
     private fun displayToastMessage() {
         val toast = Toast.makeText(this, getString(R.string.dice_rolled), Toast.LENGTH_SHORT)
         toast.show()
     }
 
     private fun updateDiceImage(diceRoll: Int) {
-        with(binding.imageView){
+        with(binding.imageView) {
             when (diceRoll) {
                 1 -> setImageResource(R.drawable.dice_1)
                 2 -> setImageResource(R.drawable.dice_2)
