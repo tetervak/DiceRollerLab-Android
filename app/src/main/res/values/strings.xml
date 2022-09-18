@@ -2,5 +2,5 @@
     <string name="app_name">Dice Roller Lab</string>
     <string name="roll">Roll</string>
     <string name="dice_rolled">Dice Rolled!</string>
-    <string name="five">5</string>
+    <string name="six">6</string>
 </resources>
