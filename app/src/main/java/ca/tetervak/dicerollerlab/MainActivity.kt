@@ -1,6 +1,7 @@
 package ca.tetervak.dicerollerlab
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +13,11 @@ import androidx.appcompat.app.AppCompatActivity
  * on the screen.
  */
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private fun onDiceRoll() {
         displayToastMessage()
         val rollResult = getRollResult()
+        Log.d(TAG, "onDiceRoll: rollResult = $rollResult")
         updateTextOutput(rollResult)
         updateDiceImage(rollResult)
     }
