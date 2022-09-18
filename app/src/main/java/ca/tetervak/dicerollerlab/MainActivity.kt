@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.message.observe(this) { message ->
             if(message != null) {
-                displayToastMessage(message)
+                displayMessage(message)
                 mainViewModel.messageIsHandled()
             }
         }
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         binding.resultTextView.text = rollResult.toString()
     }
 
-    private fun displayToastMessage(message: String) {
+    private fun displayMessage(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
