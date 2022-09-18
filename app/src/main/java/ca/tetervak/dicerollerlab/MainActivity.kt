@@ -31,13 +31,19 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.rollResult.observe(this) { result ->
             updateOutputs(result)
         }
+
+        mainViewModel.message.observe(this) { message ->
+            if(message != null) {
+                displayToastMessage(message)
+                mainViewModel.messageIsHandled()
+            }
+        }
     }
 
     /**
      * Update the screen showing the result.
      */
     private fun updateOutputs(rollResult: Int) {
-        displayToastMessage()
         Log.d(TAG, "onDiceRoll: rollResult = $rollResult")
         updateTextOutput(rollResult)
         updateDiceImage(rollResult)
@@ -47,8 +53,8 @@ class MainActivity : AppCompatActivity() {
         binding.resultTextView.text = rollResult.toString()
     }
 
-    private fun displayToastMessage() {
-        val toast = Toast.makeText(this, getString(R.string.dice_rolled), Toast.LENGTH_SHORT)
+    private fun displayToastMessage(message: String) {
+        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.show()
     }
 
