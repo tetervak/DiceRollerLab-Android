@@ -1,23 +1,24 @@
 package ca.tetervak.dicerollerlab
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import ca.tetervak.dicerollerlab.databinding.ActivityMainBinding
 
 /**
  * This activity allows the user to roll a dice and view the result
  * on the screen.
  */
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val rollButton: Button = findViewById(R.id.rollButton)
-        rollButton.setOnClickListener { onDiceRoll() }
+        binding.rollButton.setOnClickListener { onDiceRoll() }
     }
 
     /**
@@ -31,8 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateTextOutput(rollResult: Int) {
-        val resultTextView: TextView = findViewById(R.id.resultTextView)
-        resultTextView.text = rollResult.toString()
+        binding.resultTextView.text = rollResult.toString()
     }
 
     private fun getRollResult(): Int {
@@ -46,8 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDiceImage(diceRoll: Int) {
-        val diceImage: ImageView = findViewById(R.id.imageView)
-        with(diceImage){
+        with(binding.imageView){
             when (diceRoll) {
                 1 -> setImageResource(R.drawable.dice_1)
                 2 -> setImageResource(R.drawable.dice_2)
