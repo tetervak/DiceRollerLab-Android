@@ -1,6 +1,7 @@
 package ca.tetervak.dicerollerlab
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ca.tetervak.dicerollerlab.databinding.ActivityMainBinding
@@ -10,6 +11,11 @@ import ca.tetervak.dicerollerlab.databinding.ActivityMainBinding
  * on the screen.
  */
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
 
     private lateinit var binding: ActivityMainBinding
 
@@ -27,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun onDiceRoll() {
         displayToastMessage()
         val rollResult = getRollResult()
+        Log.d(TAG, "onDiceRoll: rollResult = $rollResult")
         updateTextOutput(rollResult)
         updateDiceImage(rollResult)
     }
