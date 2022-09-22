@@ -7,17 +7,17 @@ import androidx.lifecycle.MutableLiveData
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
-    private val _rollResult = MutableLiveData<Int>()
-    val rollResult: LiveData<Int> = _rollResult
+    private val _liveRollResult = MutableLiveData<Int>()
+    val liveRollResult: LiveData<Int> = _liveRollResult
 
-    private val _message = MutableLiveData<String?>()
-    val message: LiveData<String?> = _message
+    private val _liveMessage = MutableLiveData<String?>()
+    val liveMessage: LiveData<String?> = _liveMessage
 
     private val diceRolled: String = application.resources.getString(R.string.dice_rolled)
 
     fun roll() {
-        _rollResult.value = getRollResult()
-        _message.value = diceRolled
+        _liveRollResult.value = getRollResult()
+        _liveMessage.value = diceRolled
     }
 
     private fun getRollResult(): Int {
@@ -26,6 +26,6 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun messageIsHandled(){
-        _message.value = null
+        _liveMessage.value = null
     }
 }

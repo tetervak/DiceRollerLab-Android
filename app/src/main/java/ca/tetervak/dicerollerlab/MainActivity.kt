@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.rollButton.setOnClickListener { mainViewModel.roll() }
 
-        mainViewModel.rollResult.observe(this) { result ->
+        mainViewModel.liveRollResult.observe(this) { result ->
             updateOutputs(result)
         }
 
-        mainViewModel.message.observe(this) { message ->
+        mainViewModel.liveMessage.observe(this) { message ->
             if(message != null) {
                 displayMessage(message)
                 mainViewModel.messageIsHandled()
