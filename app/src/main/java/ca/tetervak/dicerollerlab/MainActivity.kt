@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.rollButton.setOnClickListener { mainViewModel.roll() }
 
-        mainViewModel.liveRollResult.observe(this) { result ->
-            updateOutputs(result)
+        mainViewModel.liveRollResult.observe(this) { rollResult ->
+            updateOutputs(rollResult)
         }
 
         mainViewModel.liveMessage.observe(this) { message ->
